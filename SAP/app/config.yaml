@@ -1,0 +1,10 @@
+credentials:
+  usernames:
+    admin:
+      name: Administrateur
+      password: "$2b$12$yTQXfVhB3PcG48XNN7IvjO5Nl7f.DF0DJjRPCCVn9xZktX.xYrC2O" # "password" bcrypt hashed
+
+cookie:
+  name: sapbw_auth
+  key: some_random_secure_key # Clé secrète aléatoire, à changer
+  expiry_days: 1

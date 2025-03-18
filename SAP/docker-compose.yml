@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  streamlit_app:
+    build: .
+    container_name: streamlit_sapbw_app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./data:/app/data
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    container_name: sapbw_postgres_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sapuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sappassword}
+      POSTGRES_DB: ${POSTGRES_DB:-sapbw_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
